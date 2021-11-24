@@ -1,0 +1,96 @@
+#
+# Rubocop Overrides
+#
+# https://rubocop.org
+#
+# This file overrides the default rules found here:
+#
+# https://github.com/rubocop/rubocop/blob/master/config/default.yml
+#
+# More details about each rule can be found in the style guide:
+#
+# https://rubystyle.guide/
+#
+# Each rule listed has a "StyleGuide" entry with a url hash, use it like this:
+#
+# https://rubystyle.guide/#short-methods
+#
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - '.git/**/*'
+    - 'bin/*'
+    - 'test/**/*'
+    - 'node_modules/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'app/views/**/*'
+    - 'config.ru'
+    - 'Rakefile'
+    - 'Guardfile'
+    - 'Gemfile'
+  TargetRubyVersion: 2.7
+  SuggestExtensions: false
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+  VersionAdded: '0.9'
+  AllowedConstants: []
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Style/Next:
+  Description: 'Use `next` to skip iteration instead of a condition at the end.'
+  StyleGuide: '#no-nested-conditionals'
+  Enabled: false
+  VersionAdded: '0.22'
+  VersionChanged: '0.35'
+  # With `always` all conditions at the end of an iteration needs to be
+  # replaced by next - with `skip_modifier_ifs` the modifier if like this one
+  # are ignored: [1, 2].each { |a| return 'yes' if a == 1 }
+  EnforcedStyle: skip_modifier_ifs
+  # `MinBodyLength` defines the number of lines of the a body of an `if` or `unless`
+  # needs to have to trigger this cop
+  MinBodyLength: 3
+  SupportedStyles:
+    - skip_modifier_ifs
+    - always
+
+Layout/EmptyLinesAroundClassBody:
+  Description: "Keeps track of empty lines around class bodies."
+  StyleGuide: '#empty-lines-around-bodies'
+  Enabled: false
+  VersionAdded: '0.49'
+  VersionChanged: '0.53'
+  EnforcedStyle: no_empty_lines
+  SupportedStyles:
+    - empty_lines
+    - empty_lines_except_namespace
+    - empty_lines_special
+    - beginning_only
+
+Layout/EmptyLinesAroundExceptionHandlingKeywords:
+  Description: "Keeps track of empty lines around exception handling keywords."
+  StyleGuide: '#empty-lines-around-bodies'
+  Enabled: false
+  VersionAdded: '0.49'
+
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Reference:
+    - http://c2.com/cgi/wiki?AbcMetric
+    - https://en.wikipedia.org/wiki/ABC_Software_Metric
+  Enabled: true
+  VersionAdded: '0.27'
+  VersionChanged: '1.5'
+  # The ABC size is a calculated magnitude, so this number can be an Integer or
+  # a Float.
+  IgnoredMethods: []
+  CountRepeatedAttributes: true
+  Max: 23
