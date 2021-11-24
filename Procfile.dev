@@ -1,0 +1,11 @@
+#
+# Foreman Config
+#
+# => brew install redis
+# => gem install foreman (outside of Rails)
+# => foreman start -f Procfile.dev
+#
+redis: redis-server /usr/local/etc/redis.conf
+rails: rails s -p 3000
+logger: tail -f ./log/development.log
+sidekiq: sidekiq
