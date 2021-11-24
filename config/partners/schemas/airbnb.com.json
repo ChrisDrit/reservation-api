@@ -1,0 +1,106 @@
+//
+// Reference: https://json-schema.org
+//
+// Example Airbnb.com Reservation JSON:
+//
+//  {
+//    "reservation_code": "YYY12345678",
+//    "start_date": "2021-04-14",
+//    "end_date": "2021-04-18",
+//    "nights": 4,
+//    "guests": 4,
+//    "adults": 2,
+//    "children": 2,
+//    "infants": 0,
+//    "status": "accepted",
+//    "guest": {
+//      "first_name": "Wayne",
+//      "last_name": "Woodbridge",
+//      "phone": "639123456789",
+//      "email": "wayne_woodbridge@bnb.com"
+//    },
+//    "currency": "AUD",
+//    "payout_price": "4200.00",
+//    "security_price": "500",
+//    "total_price": "4700.00"
+//  }
+//
+
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "properties": {
+    "reservation_code": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string"
+    },
+    "end_date": {
+      "type": "string"
+    },
+    "nights": {
+      "type": "integer"
+    },
+    "guests": {
+      "type": "integer"
+    },
+    "adults": {
+      "type": "integer"
+    },
+    "children": {
+      "type": "integer"
+    },
+    "infants": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "guest": {
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": ["first_name", "last_name", "phone", "email"]
+    },
+    "currency": {
+      "type": "string"
+    },
+    "payout_price": {
+      "type": "string"
+    },
+    "security_price": {
+      "type": "string"
+    },
+    "total_price": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "reservation_code",
+    "start_date",
+    "end_date",
+    "nights",
+    "guests",
+    "adults",
+    "children",
+    "infants",
+    "status",
+    "guest",
+    "currency",
+    "payout_price",
+    "security_price",
+    "total_price"
+  ]
+}

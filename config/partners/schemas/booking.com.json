@@ -1,0 +1,130 @@
+//
+// Reference: https://json-schema.org
+//
+// Example Booking.com Reservation JSON:
+//
+//  {
+//  "reservation": {
+//      "code": "XXX12345678",
+//      "start_date": "2021-03-12",
+//      "end_date": "2021-03-16",
+//      "expected_payout_amount": "3800.00",
+//      "guest_details": {
+//          "localized_description": "4 guests",
+//          "number_of_adults": 2,
+//          "number_of_children": 2,
+//          "number_of_infants": 0
+//      },
+//      "guest_email": "wayne_woodbridge@bnb.com",
+//      "guest_first_name": "Wayne",
+//      "guest_last_name": "Woodbridge",
+//      "guest_phone_numbers": [
+//          "639123456789",
+//          "639123456789"
+//      ],
+//      "listing_security_price_accurate": "500.00",
+//      "host_currency": "AUD",
+//      "nights": 4,
+//      "number_of_guests": 4,
+//      "status_type": "accepted",
+//      "total_paid_amount_accurate": "4300.00"
+//      }
+//  }
+//
+
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "properties": {
+    "reservation": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "expected_payout_amount": {
+          "type": "string"
+        },
+        "guest_details": {
+          "properties": {
+            "localized_description": {
+              "type": "string"
+            },
+            "number_of_adults": {
+              "type": "integer"
+            },
+            "number_of_children": {
+              "type": "integer"
+            },
+            "number_of_infants": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "localized_description",
+            "number_of_adults",
+            "number_of_children",
+            "number_of_infants"
+          ]
+        },
+        "guest_email": {
+          "type": "string"
+        },
+        "guest_first_name": {
+          "type": "string"
+        },
+        "guest_last_name": {
+          "type": "string"
+        },
+        "guest_phone_numbers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "listing_security_price_accurate": {
+          "type": "string"
+        },
+        "host_currency": {
+          "type": "string"
+        },
+        "nights": {
+          "type": "integer"
+        },
+        "number_of_guests": {
+          "type": "integer"
+        },
+        "status_type": {
+          "type": "string"
+        },
+        "total_paid_amount_accurate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "start_date",
+        "end_date",
+        "expected_payout_amount",
+        "guest_email",
+        "guest_first_name",
+        "guest_last_name",
+        "guest_phone_numbers",
+        "listing_security_price_accurate",
+        "host_currency",
+        "nights",
+        "number_of_guests",
+        "status_type",
+        "total_paid_amount_accurate"
+      ]
+    }
+  },
+  "required": [
+    "reservation"
+  ]
+}
