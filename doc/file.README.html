@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.26
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Reservation+API">Reservation API</h1>
+
+<p>A simple reservation API created as a timeboxed <a href="https://hometime.io">Hometime.io</a> take home <a href="SPEC.md">test project</a>.</p>
+
+<p>Sticking strickly to the timebox requested, I&#39;ve completed what I can within it.</p>
+<ul><li>
+<p>Needs automated testing. Really should have some basic tests.</p>
+</li><li>
+<p>Code improvements, and thoughfulness with more time.</p>
+</li><li>
+<p>More specific “Call Outs” listed below.</p>
+</li><li>
+<p>Etc…</p>
+</li></ul>
+
+<h2 id="label-Set+up-3A">Set up:</h2>
+
+<p>Rails environment:</p>
+<ul><li>
+<p><a href="https://guides.rubyonrails.org/getting_started.html#creating-a-new-rails-project-installing-rails">Set up Ruby on Rails</a></p>
+</li><li>
+<p><code>ruby &#39;2.7.3&#39;</code></p>
+</li><li>
+<p><code>Rails &#39;6.1.4&#39;</code></p>
+</li></ul>
+
+<p>Install this application:</p>
+<ul><li>
+<p><code>&gt; bundle install</code></p>
+</li><li>
+<p><code>&gt; rails db:migrate</code></p>
+</li></ul>
+
+<p>Redis:</p>
+<ul><li>
+<p><code>&gt; brew insall redis</code></p>
+</li><li>
+<p>Find it&#39;s path, mine is <code>/usr/local/etc/redis.conf</code></p>
+</li><li>
+<p>Update your path in the <code>Procfile.dev</code> for the redis worker.</p>
+</li></ul>
+
+<p>Run this application:</p>
+<ul><li>
+<p><code>&gt; foreman start -f Procfile.dev</code></p>
+</li></ul>
+
+<p>Sidekiq Dashboard:</p>
+<ul><li>
+<p><code>http://localhost:3000/sidekiq</code></p>
+</li></ul>
+
+<p>Maintain this application:</p>
+<ul><li>
+<p><code>&gt; rubocop</code></p>
+</li><li>
+<p><code>&gt; rails test</code> (not yet implemented)</p>
+</li></ul>
+
+<p>Generate / View Docs:</p>
+<ul><li>
+<p><code>&gt; gem install yard</code></p>
+</li><li>
+<p><code>&gt; yard</code> to generate docs</p>
+</li><li>
+<p><code>&gt; yard server</code> to view the docs locally</p>
+</li><li>
+<p><code>http://0.0.0.0:8808</code> (on my localhost)</p>
+</li></ul>
+
+<p>Alerting:</p>
+<ul><li>
+<p>I&#39;m using <strong>Rollbar</strong> for exception tracking.</p>
+</li><li>
+<p>This 3rd party serves as a central hub where we can filter by severity level, exception type, or error string. We can then pop off an email, Slack, SMS text, etc.. alerts based upon our desire to stay on top of things.</p>
+</li><li>
+<p>I&#39;ve hard coded the <code>access_token</code> within the <code>rollbar.rb</code> initializer. Normally would NOT do this, instead I&#39;d add that to an environment file (<code>.env</code>) outside of the git repo.</p>
+</li></ul>
+
+<h2 id="label-Introducing+a+3rd+Payload-3A">Introducing a 3rd Payload:</h2>
+
+<p>To introduce more than two payloads, from different partners…</p>
+<ul><li>
+<p>Add a new model that inherits from the Reservation model.</p>
+</li><li>
+<p>Name this model the same and/or similar to the new partner.</p>
+</li><li>
+<p>Add a new <code>config/partners/schemas/&lt;partner.json&gt;</code> file.</p>
+</li><li>
+<p>Create required helper function(s) as needed.</p>
+</li></ul>
+
+<h2 id="label-Call+Outs-3A">Call Outs:</h2>
+
+<h4 id="label-231">#1</h4>
+
+<p>For the purposes of this exercise, I will be defining the following payloads as:</p>
+<ul><li>
+<p>payload_1 = Airbnb.com</p>
+</li><li>
+<p>payload_2 = Bookings.com</p>
+</li></ul>
+
+<h4 id="label-232">#2</h4>
+
+<p>Associations.</p>
+
+<p>I&#39;m assuming only one Guest record per Reservation for this project.</p>
+
+<p>Typically you can add more guests to a reservation system but that is usually optional (in my experience). So I&#39;m going with this approach since nothing is directly called out within the specification.</p>
+
+<h4 id="label-233">#3</h4>
+
+<p>API endpoint.</p>
+<ul><li>
+<p>Is open to the public (very bad).</p>
+</li><li>
+<p>Should be an authenticated / verified on each request.</p>
+</li></ul>
+
+<h4 id="label-234">#4</h4>
+
+<p>Payload 2.</p>
+
+<p><code>localized_description</code> found in payload_2 is not found within payload_1.</p>
+
+<p>For this exercise, I will be ignoring this field as we can handle localization differently.</p>
+
+<h4 id="label-235">#5</h4>
+
+<p>Payload_1</p>
+
+<pre class="code ruby"><code class="ruby">&quot;payout_price&quot;: &quot;4200.00&quot;, 
+&quot;security_price&quot;: &quot;500&quot;, 
+&quot;total_price&quot;: &quot;4700.00&quot;
+</code></pre>
+
+<p>Payload_2</p>
+
+<pre class="code ruby"><code class="ruby">&quot;total_paid_amount_accurate&quot;: &quot;4300.00&quot;
+&quot;listing_security_price_accurate&quot;: &quot;500.00&quot;, 
+&quot;expected_payout_amount&quot;: &quot;3800.00&quot;,
+</code></pre>
+
+<p>These appear to be calculations, though I won&#39;t be calculating as nothing was called out within the specification for this.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Wed Nov 24 11:22:27 2021 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.26 (ruby-2.7.3).
+</div>
+
+    </div>
+  </body>
+</html>
