@@ -5,7 +5,10 @@
 
 # Enable parameter wrapping for JSON. You can disable this by setting :format to an empty array.
 ActiveSupport.on_load(:action_controller) do
-  wrap_parameters format: [:json]
+
+  # Disabling to allow for root-less JSON Schema sent to our API endpoint as per:
+  # https://guides.rubyonrails.org/action_controller_overview.html#json-parameters
+  wrap_parameters format: []
 end
 
 # To enable root element in JSON for ActiveRecord objects.
